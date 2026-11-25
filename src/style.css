@@ -153,3 +153,4 @@ footer strong { letter-spacing: 3px; color: #493124; }
   padding: 8px;
   border-radius: 10px;
 }
+.admin-section[hidden] { display: none !important; }
