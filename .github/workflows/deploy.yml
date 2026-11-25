@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: read
   contents: read
   pages: write
   id-token: write
@@ -46,13 +45,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Carica il sito
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
-          name: fedeltacarlos-pages
 
       - name: Pubblica il sito
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: fedeltacarlos-pages
