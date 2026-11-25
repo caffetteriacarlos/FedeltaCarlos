@@ -43,11 +43,14 @@ jobs:
       - name: Configura GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Carica il sito
+            - name: Carica il sito
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+          name: fedeltacarlos-pages
 
-      - name: Pubblica il sito
+            - name: Pubblica il sito
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: fedeltacarlos-pages
