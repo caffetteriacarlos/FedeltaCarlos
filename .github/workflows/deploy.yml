@@ -1,3 +1,4 @@
+
 name: Pubblica FedeltaCarlos
 
 on:
@@ -16,10 +17,10 @@ concurrency:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
 
     steps:
       - name: Scarica il progetto
@@ -43,13 +44,13 @@ jobs:
       - name: Configura GitHub Pages
         uses: actions/configure-pages@v5
 
-            - name: Carica il sito
+      - name: Carica il sito
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
           name: fedeltacarlos-pages
 
-            - name: Pubblica il sito
+      - name: Pubblica il sito
         id: deployment
         uses: actions/deploy-pages@v4
         with:
