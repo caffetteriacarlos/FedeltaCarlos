@@ -97,7 +97,7 @@ document.querySelector('#app').innerHTML = `
       </div>
     </section>
 
-    <section class="admin-section">
+    <section class="admin-section" hidden>
       <div>
         <span class="eyebrow">AREA RISERVATA</span>
         <h2>Gestione Caffetteria</h2>
@@ -283,6 +283,9 @@ registrationForm.addEventListener('submit', async (event) => {
     registrationSubmit.textContent = 'CREA LA MIA TESSERA'
   }
 })
+
+const adminSection = document.querySelector('.admin-section')
+adminSection.hidden = window.location.hash !== '#admin'
 
 const modal = document.querySelector('#loginModal')
 const message = document.querySelector('#loginMessage')
