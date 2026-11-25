@@ -134,4 +134,22 @@ footer strong { letter-spacing: 3px; color: #493124; }
   .stamp b { font-size: 17px; }
   .admin-section { align-items: flex-start; flex-direction: column; }
   .reward { padding: 17px; }
+}#customerQr {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: visible;
+}
+
+#customerQr canvas {
+  display: block;
+  width: 220px !important;
+  height: 220px !important;
+  max-width: 100%;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 10px;
 }
