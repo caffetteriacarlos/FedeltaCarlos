@@ -111,7 +111,8 @@ style.textContent = `
   padding: 20px; background: #241912bb;
 }
 .login-box {
-  position: relative; width: min(100%, 420px);
+  position: relative; width: min(100%, 520px);
+  max-height: 90vh; overflow-y: auto;
   padding: 35px; border-radius: 16px;
   background: #fffdf9; box-shadow: 0 20px 70px #0004;
 }
@@ -194,7 +195,7 @@ document.querySelector('#loginForm').addEventListener('submit', async (event) =>
         <label for="customerEmail">Email (facoltativa)</label>
         <input id="customerEmail" type="email" placeholder="Email cliente">
 
-        <p id="customerMessage" role="status"></p>
+<div id="customerMessage" role="status"></div>
         <button type="submit" id="saveCustomer">SALVA CLIENTE</button>
       </form>
 
