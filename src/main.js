@@ -162,8 +162,32 @@ style.textContent = `
 }
 #qrReader { width: 100%; margin: 15px auto; }
 #qrReader video { border-radius: 10px; }
-#scanMessage { font-size: 13px; }
-#scannedCustomer { margin: 12px 0; }
+#scanMessage { font-size: 14px; font-weight: 600; }
+#scannedCustomer {
+  margin: 18px 0;
+  padding: 18px;
+  border: 1px solid #d9cdbd;
+  border-radius: 12px;
+  background: #fffdf9;
+}
+#scannedCustomer p {
+  color: #493124;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+#scannedCustomer button {
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  background: #493124;
+  font-weight: 700;
+  cursor: pointer;
+}
+#scannedCustomer button:disabled { opacity: .7; }
 #loginMessage { color: #a33; font-size: 12px; min-height: 18px; }
 `
 document.head.appendChild(style)
