@@ -255,6 +255,78 @@ const registrationMessage = document.querySelector('#registrationMessage')
 const registrationSubmit = document.querySelector('#registrationSubmit')
 const newLoyaltyCard = document.querySelector('#newLoyaltyCard')
 
+const customerToken = new URLSearchParams(window.location.search).get('tessera')
+
+if (customerToken) {
+  document.querySelector('.registration-section').hidden = true
+
+  const dashboard = document.querySelector('.dashboard')
+  const card = dashboard.querySelector('.loyalty-card')
+  const owner = document.createElement('p')
+  owner.className = 'customer-card-name'
+  owner.textContent = 'Caricamento della tua tessera...'
+  card.before(owner)
+
+  const showError = (message) => {
+    owner.textContent = message
+  }
+
+  const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+  if (!uuidPattern.test(customerToken)) {
+    showError('Codice tessera non valido.')
+  } else {
+    ;(async () => {
+      try {
+        const { data, error } = await supabase.rpc('visualizza_tessera', {
+          p_token_qr: customerToken
+        })
+
+        if (error) throw error
+
+        const cliente = Array.isArray(data) ? data[0] : data
+        if (!cliente) throw new Error('Tessera non trovata.')
+
+        owner.textContent = `Tessera personale di ${cliente.nome} ${cliente.cognome}`
+
+        const timbri = Number(cliente.timbri) || 0
+        const premi = Number(cliente.premi_disponibili) || 0
+
+        document.querySelector('#progress').innerHTML =
+          `${timbri} <small>/ 10</small>`
+
+        const stamps = document.querySelector('#stamps')
+        stamps.replaceChildren()
+
+        for (let i = 1; i <= 10; i++) {
+          const stamp = document.createElement('div')
+          stamp.className = 'stamp' + (i <= timbri ? ' completed' : '')
+
+          const number = document.createElement('span')
+          number.textContent = String(i).padStart(2, '0')
+
+          const coffee = document.createElement('b')
+          coffee.textContent = i <= timbri ? '✓' : '☕'
+
+          stamp.append(number, coffee)
+          stamps.append(stamp)
+        }
+
+        document.querySelector('.reward h3').textContent =
+          premi > 0 ? `Hai ${premi} premi disponibili!` : 'Il tuo prossimo premio ti aspetta!'
+
+        document.querySelector('.reward p').textContent =
+          premi > 0
+            ? 'Mostra questa tessera al banco per utilizzare il tuo premio.'
+            : `Ti mancano ${10 - timbri} consumazioni al prossimo premio.`
+      } catch (error) {
+        console.error('Errore caricamento tessera:', error)
+        showError(error.message || 'Impossibile caricare la tessera.')
+      }
+    })()
+  }
+}
+
 registrationForm.addEventListener('submit', async (event) => {
   event.preventDefault()
   registrationSubmit.disabled = true
@@ -280,7 +352,9 @@ registrationForm.addEventListener('submit', async (event) => {
     }
 
     const canvas = document.createElement('canvas')
-    await QRCode.toCanvas(canvas, cliente.token_qr, {
+    const linkTessera = `${window.location.origin}${import.meta.env.BASE_URL}?tessera=${cliente.token_qr}`
+
+    await QRCode.toCanvas(canvas, linkTessera, {
       width: 240,
       margin: 2
     })
@@ -426,8 +500,15 @@ document.querySelector('#loginForm').addEventListener('submit', async (event) =>
             scannedCustomer.replaceChildren()
 
             try {
+              let tokenQr = codice.trim()
+
+              try {
+                const urlQr = new URL(tokenQr)
+                tokenQr = urlQr.searchParams.get('tessera') || tokenQr
+              } catch (_) {}
+
               const { data, error } = await supabase.rpc('cerca_cliente_qr', {
-                p_token_qr: codice.trim()
+                p_token_qr: tokenQr
               })
 
               if (error) throw error

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #34271f;
+  background: #f5f0e8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; min-width: 320px; }
+
+.topbar {
+  height: 82px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fffdf9;
+  border-bottom: 1px solid #e8dfd3;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-icon {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #493124; color: #e8c98e;
+  font-family: Georgia, serif; font-size: 24px;
+}
+.brand strong { display: block; letter-spacing: 3px; font-size: 15px; }
+.brand span { display: block; font-size: 9px; letter-spacing: 2px; color: #927d69; }
+
+.online { font-size: 10px; letter-spacing: 1.5px; color: #806d58; }
+.online i {
+  display: inline-block; width: 7px; height: 7px;
+  border-radius: 50%; background: #8a9b70; margin-right: 8px;
+}
+
+main { max-width: 1000px; margin: auto; padding: 75px 24px; }
+
+.welcome { text-align: center; margin-bottom: 65px; }
+.eyebrow { font-size: 10px; letter-spacing: 2px; color: #a17e51; font-weight: 700; }
+.welcome h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(40px, 7vw, 66px);
+  line-height: 1.12; font-weight: 500; margin: 20px 0;
+}
+.welcome h1 em { color: #98734c; }
+.welcome p { color: #8a7a6b; font-size: 14px; }
+
+.dashboard { max-width: 650px; margin: auto; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 22px; }
+.section-heading h2, .admin-section h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 27px; font-weight: 500; margin: 8px 0 0;
+}
+.status {
+  font-size: 9px; letter-spacing: 1px; color: #64734e;
+  border: 1px solid #cbd2bd; border-radius: 30px; padding: 7px 12px;
+}
+
+.loyalty-card {
+  padding: 34px; border-radius: 18px;
+  color: #f7ead3;
+  background: linear-gradient(135deg, #493124, #241912);
+  box-shadow: 0 18px 45px #49312430;
+}
+.card-top, .card-bottom { display: flex; justify-content: space-between; align-items: center; }
+.card-label { font-size: 9px; letter-spacing: 3px; color: #c6a77a; }
+.card-top h2 { font-family: Georgia, serif; font-size: 29px; letter-spacing: 5px; margin: 8px 0; }
+.card-top h2 span { color: #d4ae70; }
+.coffee-icon { font-size: 35px; }
+.card-middle { margin: 38px 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.card-middle > span { font-size: 9px; letter-spacing: 2px; color: #cbb99f; }
+.card-middle strong { font-size: 27px; color: #e5c58f; }
+.card-middle small { font-size: 14px; color: #b9a58e; }
+.stamps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.stamp {
+  aspect-ratio: 1; border: 1px solid #8d7458;
+  border-radius: 12px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 3px;
+  color: #c7b397; background: #ffffff08;
+}
+.stamp span { font-size: 9px; }
+.stamp b { font-size: 20px; font-weight: 400; }
+.card-bottom { margin-top: 25px; padding-top: 16px; border-top: 1px solid #ffffff25; }
+.card-bottom span { font-size: 9px; letter-spacing: 2px; color: #cbb99f; }
+
+.reward {
+  margin-top: 20px; padding: 22px;
+  background: #fffdf9; border: 1px solid #e8dfd3;
+  border-radius: 14px; display: flex; align-items: center; gap: 17px;
+}
+.reward-icon {
+  width: 45px; height: 45px; display: grid; place-items: center;
+  border-radius: 50%; background: #f2e7d3; color: #98734c; font-size: 23px;
+}
+.reward h3 { margin: 6px 0; font-family: Georgia, serif; font-size: 20px; font-weight: 500; }
+.reward p, .admin-section p { color: #8a7a6b; font-size: 12px; margin: 0; }
+
+.admin-section {
+  max-width: 650px; margin: 65px auto 0; padding-top: 30px;
+  border-top: 1px solid #e4dacc;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.admin-section p { margin-top: 9px; line-height: 1.6; }
+.admin-section button {
+  flex-shrink: 0; border: 0; border-radius: 7px;
+  background: #493124; color: #f7ead3;
+  padding: 15px 18px; font-size: 10px; letter-spacing: 1px;
+  cursor: pointer;
+}
+.admin-section button:hover { background: #684832; }
+.admin-section button span { margin-left: 10px; }
+
+footer {
+  padding: 25px 8%; border-top: 1px solid #e8dfd3;
+  display: flex; justify-content: space-between;
+  background: #fffdf9; color: #927d69; font-size: 11px;
+}
+footer strong { letter-spacing: 3px; color: #493124; }
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 18px; height: 70px; }
+  .online { font-size: 8px; letter-spacing: .5px; }
+  main { padding: 55px 17px; }
+  .welcome { margin-bottom: 45px; }
+  .loyalty-card { padding: 23px 18px; }
+  .stamps { gap: 7px; }
+  .stamp b { font-size: 17px; }
+  .admin-section { align-items: flex-start; flex-direction: column; }
+  .reward { padding: 17px; }
+}#customerQr {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: visible;
+}
+
+#customerQr canvas {
+  display: block;
+  width: 220px !important;
+  height: 220px !important;
+  max-width: 100%;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 10px;
+}
+.admin-section[hidden] { display: none !important; }
