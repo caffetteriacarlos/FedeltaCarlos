@@ -48,11 +48,11 @@ jobs:
       - name: Carica il sito
         uses: actions/upload-pages-artifact@v4
         with:
-          name: fedeltacarlos-site
+          name: fedeltacarlos-site-${{ github.run_id }}-${{ github.run_attempt }}
           path: ./dist
 
       - name: Pubblica il sito
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: fedeltacarlos-site
+          artifact_name: fedeltacarlos-site-${{ github.run_id }}-${{ github.run_attempt }}
